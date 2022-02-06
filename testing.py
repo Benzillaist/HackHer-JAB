@@ -4,7 +4,7 @@ import sys, pygame, time
 
 pygame.init()
 
-size = width, height = 800, 800
+size = width, height = 900, 600
 speed = [1, 1]
 black = 0, 0, 0
 
@@ -29,6 +29,31 @@ wall = pygame.image.load("office2000.png").convert()
 
 screen.blit(wall, (0,0))
 
+# DIALOGUES
+
+pygame.font.init()
+font = pygame.font.Font('Raleway-Medium.ttf ',30)
+
+d1 = font.render('Welcome to your new office!', True, (0,0,0))
+textRect = d1.get_rect()
+textRect.center = (450,550)
+
+d2 = font.render("My name is Cathy.", True, (0,0,0))
+textRect2 = d2.get_rect()
+textRect2.center = (450,550)
+
+numPressed = 0
+bg = pygame.image.load("office2000.png")
+
+def dialogue():
+    screen.blit(bg,(0,0))
+    if numPressed == 0:
+        screen.blit(d1, (textRect))
+    elif numPressed == 1:
+        screen.blit(d2, (textRect2))
+
+# GAME LOOP 
+
 while 1:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -38,6 +63,9 @@ while 1:
 
     keys = pygame.key.get_pressed()
     
+    if keys[pygame.K_SPACE]:
+        numPressed+=1
+        time.sleep(0.5)
     if keys[pygame.K_a]:
         if ballrect.left > cameraBorder:
             ballrect.move_ip(-5, 0)
@@ -60,6 +88,7 @@ while 1:
             cameraOff_Y += 5
 
     screen.blit(wall, (-cameraOff_X, -cameraOff_Y))
+    dialogue()
 
     screen.blit(ball, ballrect)
     pygame.display.flip()
