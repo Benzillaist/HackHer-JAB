@@ -20,7 +20,7 @@ black = 0, 0, 0
 
 cameraOff_X = 0
 cameraOff_Y = 0
-cameraBorder = 50
+cameraBorder = 100
 
 count = 0
 
@@ -50,7 +50,7 @@ font = pygame.font.Font('Raleway-Medium.ttf ',30)
 
 print(f'{0.5*screen_X} {0.85*screen_Y}')
 
-d1 = font.render('Welcome to your new office!', True, (0,0,0))
+d1 = font.render('Welcome to your new office! {Press the spacebar to cycle through dialogue}', True, (0,0,0))
 textRect = d1.get_rect()
 textRect.center = (0.5*width, 0.85*height)
 
@@ -134,6 +134,14 @@ g6 = font.render("You feel that this has gone too far. Press R to report Ernest 
 rectang6 = g6.get_rect()
 rectang6.center = (0.5*width, 0.85*height)
 
+g7 = font.render("HR: Thank you for your report, we will investigate and get back to you later", True, (0,0,0))
+rectang7 = g7.get_rect()
+rectang7.center = (0.5*width, 0.85*height)
+
+g8 = font.render("Press C to confront or R to resign", True, (0,0,0))
+rectang8 = g8.get_rect()
+rectang8.center = (0.5*width, 0.85*height)
+
 numPressed = 0
 #bg = pygame.image.load("office2000.png")
 
@@ -178,8 +186,12 @@ def dialogue():
         screen.blit(g4, rectang4)
     elif numPressed == 19:
         screen.blit(g5, rectang5)
-    elif numPressed == 20:
+    elif numPressed == 20 and looped == 0:
         screen.blit(g6, rectang6)
+    elif numPressed == 21 and looped == 0:
+        screen.blit(g7, rectang7)
+    elif numPressed == 20 and looped == 1:
+        screen.blit(g8, rectang8)
 
 # DIALOGUE D1S2
 
@@ -197,9 +209,9 @@ while 1:
             sys.exit()
 
     #time.sleep(0.001)
-
+    print(looped)
     keys = pygame.key.get_pressed()
-    if(numPressed < 4 or numPressed == 9 or numPressed == 10 or numPressed == 14 or numPressed == 15):
+    if(numPressed < 5 or numPressed == 9 or numPressed == 10 or numPressed == 14 or numPressed == 15):
         if keys[pygame.K_a]:
             if ballrect.left > cameraBorder:
                 ballrect.move_ip(-1, 0)
@@ -249,7 +261,7 @@ while 1:
             cameraOff_X = 0
             cameraOff_Y = 0
             time.sleep(0.5)
-        elif numPressed >= 17 and numPressed < 19 and sexualHarassment == 1:
+        elif numPressed >= 17 and numPressed < 20 and sexualHarassment == 1:
             numPressed+=1
             time.sleep(0.5)
 
@@ -279,26 +291,46 @@ while 1:
             numPressed += 1
             sexualHarassment = 1
             time.sleep(0.5)
-    """
-    if sexualHarassment == 1:
+
+    if sexualHarassment == 1 and looped == 0:
         if keys[pygame.K_r]:
-            # nothing happens loop back to the start of day 3
             sexualHarassment = 0
+            numPressed += 1
+            # nothing happens loop back to the start of day 3
+            screen.blit(wall, (-cameraOff_X, -cameraOff_Y))
+            if numPressed >= 4 and numPressed < 10:
+                screen.blit(pygame.transform.rotate(ernest, 180), (width + 200 - cameraOff_X, 50 - cameraOff_Y))
+            if numPressed >= 11 and numPressed < 15:
+                screen.blit(ernest, (bound_X + 175 - cameraOff_X, height - 50 - cameraOff_Y))
+            if numPressed >= 16 and numPressed <= 20:
+                screen.blit(pygame.transform.rotate(ernest, 90), (450 - cameraOff_X, 100 - cameraOff_Y))
+            screen.blit(ball, ballrect)
+            dialogue()
+            pygame.display.flip()
+            time.sleep(5)
+            numPressed = 15
+            ball = pygame.image.load("girl2.png").convert()
+            ballrect = ball.get_rect()
+            ballrect.move_ip(cameraBorder, cameraBorder)
+            cameraOff_X = 0
+            cameraOff_Y = 0
+            looped = 1
         if keys[pygame.K_i]:
             # nothing happens loop back to the start of day 3
             sexualHarassment = 0
-        looped = 1
+            numPressed = 15
+            ball = pygame.image.load("girl2.png").convert()
+            ballrect = ball.get_rect()
+            ballrect.move_ip(cameraBorder, cameraBorder)
+            cameraOff_X = 0
+            cameraOff_Y = 0
+            looped = 1
+    
 
-    if looped == 1:
-        if keys[pygame.K_c]:
-            jobless = 1 
-        if jobless == 1:
-                # switch to a display that says game over 
-            if keys[pygame.K_r]:
-                jobless = 1
-                if jobless == 1:
-                # switch to a display that says game over 
-   """ 
+    if looped == 1 and numPressed == 20:
+        if keys[pygame.K_c] or keys[pygame.K_r]:
+            wall = pygame.image.load("ulost.png").convert()
+
     screen.blit(wall, (-cameraOff_X, -cameraOff_Y))
     if numPressed >= 4 and numPressed < 10:
         screen.blit(pygame.transform.rotate(ernest, 180), (width + 200 - cameraOff_X, 50 - cameraOff_Y))
