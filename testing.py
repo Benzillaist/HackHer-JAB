@@ -72,31 +72,40 @@ while 1:
     
     if keys[pygame.K_a]:
         if ballrect.left > cameraBorder:
-            ballrect.move_ip(-5, 0)
+            ballrect.move_ip(-1, 0)
         elif cameraOff_X > cameraBorder:
             cameraOff_X -= 5
     elif keys[pygame.K_d]:
         if ballrect.right < width - cameraBorder:
-            ballrect.move_ip(5, 0)
+            ballrect.move_ip(1, 0)
         elif cameraOff_X < bound_X - cameraBorder:
             cameraOff_X += 5
     if keys[pygame.K_w]:
         if ballrect.top > cameraBorder:
-            ballrect.move_ip(0, -5)
+            ballrect.move_ip(0, -1)
         elif cameraOff_Y > cameraBorder:
             cameraOff_Y -= 5
     elif keys[pygame.K_s]:
         if ballrect.bottom <= height - cameraBorder:
-            ballrect.move_ip(0, 5)
+            ballrect.move_ip(0, 1)
         elif cameraOff_Y < bound_Y - cameraBorder:
             cameraOff_Y += 5
     if keys[pygame.K_SPACE]:
         numPressed+=1
         if(numPressed<2):
             time.sleep(0.5)
+    print(ballrect.center) 
+    print(f'{cameraOff_X}, {cameraOff_Y}')
 
     screen.blit(wall, (-cameraOff_X, -cameraOff_Y))
     dialogue()
 
     screen.blit(ball, ballrect)
     pygame.display.flip()
+
+    """
+    if math.abs(ballrect.centerx - 657+1040) < 100 and math.abs(ballrect.centery - 331) < 100): 
+        printerTask()
+        if keys[pygame.K_p]:
+            #dialogue2() 
+    """ 
