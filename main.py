@@ -33,7 +33,7 @@ textRect4.center = (0.5*screen_X, 0.85*screen_Y)
 
 e1 = font.render("Press P to print your documents", True, (0,0,0))
 rect = e1.get_rect()
-rect.center = (0.5*screen_X, 0.85*screen_Y)
+rect.center = (0.5*width, 0.85*screen_Y)
 
 #After a delay of 2 seconds - maybe loading bar?
 e2 = font.render("And you're done!", True, (0,0,0))
@@ -80,6 +80,28 @@ rectangle4.center = (0.5*screen_X, 0.85*screen_Y)
 f5 = font.render("Ernest: You know, you should smile more.", True, (0,0,0))
 rectangle5 = f5.get_rect()
 rectangle5.center = (0.5*screen_X, 0.85*screen_Y)
+
+# DIALOGUE - D3 Coffee Machine
+
+g1 = font.render("Day 3: Head over to the coffee machine and brew some coffee.", True, (0,0,0))
+rectang1 = g1.get_rect()
+rectang1.center = (0.5*width, 0.85*height)
+
+g2 = font.render("[Ernest places his hand on your shoulder.]", True, (0,0,0))
+rectang2 = g2.get_rect()
+rectang2.center = (0.5*width, 0.85*height)
+
+g3 = font.render("Ernest: You look nice today.", True, (0,0,0))
+rectang3 = g3.get_rect()
+rectang3.center = (0.5*width, 0.85*height)
+
+g4 = font.render("Ernest: We could go out sometime.", True, (0,0,0))
+rectang4 = g4.get_rect()
+rectang4.center = (0.5*width, 0.85*height)
+
+g5 = font.render("You feel that this has gone too far. Press R to report Ernest to HR OR Press I to ignore him.", True, (0,0,0))
+rectang5 = g5.get_rect()
+rectang5.center = (0.5*width, 0.85*height)
 
 
 numPressed = 0
