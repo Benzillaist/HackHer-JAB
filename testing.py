@@ -10,6 +10,7 @@ screen_Y = user32.GetSystemMetrics(1)
 printerVar = 0
 computerVar = 0
 sexualHarassment = 0
+jobless = 0
 
 pygame.init()
 
@@ -153,9 +154,46 @@ while 1:
     pygame.display.flip()
 
     """
-    if math.abs(ballrect.centerx - 657+1040) < 100 and math.abs(ballrect.centery - 331) < 100): 
+    if abs(ballrect.centerx - 657+1040) < 100 and abs(ballrect.centery - 331) < 100): 
         printerTask()
         if keys[pygame.K_p]:
-            printerTask = 1
-            dialogue()
+            dialogue() 
     """ 
+    """
+    if abs(ballrect.centerx - 700) < 100 and abs(ballrect.centery - 280+430) < 100:
+        computerTask() # go to the computer and send your emails 
+        if keys[pygame.K_c]:
+            dialogue()
+    """
+    """
+    if abs(ballrect.centerx - 429) < 100 and abs(ballrect.centery - 181) < 100:
+        coffeeTask() # go make a coffee 
+        if keys[pygame.K_c]:
+            dialogue() 
+            sexualHarassment = 1
+            # print you were sexually harassed and give the options to choose from
+            # first day - print report to HR or ignore 
+            # second day - print confront Ernest or resign 
+    """
+    """
+    # after the sexual harassment occurs on the third day, press R to report to HR and press I to ignore
+    while sexualHarassment = 1:
+        if keys[pygame.K_r]:
+            # nothing happens loop back to the start of day 3
+            sexualHarassment = 0
+        if keys[pygame.K_i]:
+            # nothing happens loop back to the start of day 3
+            sexualHarassment = 0
+    """
+    """
+    while loop to be fixed 
+        if keys[pygame.K_c]:
+            jobless = 1 
+            if jobless = 1:
+                # switch to a display that says game over 
+        if keys[pygame.K_r]:
+            jobless = 1
+            if jobless = 1:
+                # switch to a display that says game over 
+    """
+
