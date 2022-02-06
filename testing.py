@@ -1,31 +1,37 @@
 from concurrent.futures import wait
 from locale import CHAR_MAX
 import sys, pygame, time
+import ctypes
+
+user32 = ctypes.windll.user32
+screen_X = user32.GetSystemMetrics(0)
+screen_Y = user32.GetSystemMetrics(1)
+
 
 pygame.init()
 
-size = width, height = 900, 600
+size = width, height = screen_X*0.75, screen_Y*0.75
 speed = [1, 1]
 black = 0, 0, 0
 
 cameraOff_X = 0
 cameraOff_Y = 0
-cameraBorder = 50
-
-bound_X = 1000
-bound_Y = 1000
+cameraBorder = 0
 
 count = 0
 
 screen = pygame.display.set_mode(size)
 
-ball = pygame.image.load("girl1.png").convert()
+ball = pygame.image.load("girl2.png").convert()
 ballrect = ball.get_rect()
 ballrect.move_ip(cameraBorder, cameraBorder)
 
 wall = pygame.image.load("office2000.png").convert()
 #wall = pygame.transform.scale(wall, (20, 20))
 #wallrect = wall.get_rect()
+
+bound_X = wall.get_width() - width
+bound_Y = wall.get_height() - height
 
 screen.blit(wall, (0,0))
 
@@ -37,22 +43,23 @@ font = pygame.font.Font('Raleway-Medium.ttf ',30)
 d1 = font.render('Welcome to your new office!', True, (0,0,0))
 textRect = d1.get_rect()
 textRect.center = (450,550)
+bound_X = wall.get_width() - width
+bound_Y = wall.get_height() - height
 
 d2 = font.render("My name is Cathy.", True, (0,0,0))
 textRect2 = d2.get_rect()
 textRect2.center = (450,550)
 
 numPressed = 0
-bg = pygame.image.load("office2000.png")
+#bg = pygame.image.load("office2000.png")
 
 def dialogue():
-    screen.blit(bg,(0,0))
     if numPressed == 0:
         screen.blit(d1, (textRect))
     elif numPressed == 1:
         screen.blit(d2, (textRect2))
 
-# GAME LOOP 
+# GAME LOOP
 
 while 1:
     for event in pygame.event.get():
@@ -63,9 +70,6 @@ while 1:
 
     keys = pygame.key.get_pressed()
     
-    if keys[pygame.K_SPACE]:
-        numPressed+=1
-        time.sleep(0.5)
     if keys[pygame.K_a]:
         if ballrect.left > cameraBorder:
             ballrect.move_ip(-5, 0)
@@ -86,6 +90,10 @@ while 1:
             ballrect.move_ip(0, 5)
         elif cameraOff_Y < bound_Y - cameraBorder:
             cameraOff_Y += 5
+    if keys[pygame.K_SPACE]:
+        numPressed+=1
+        if(numPressed<2):
+            time.sleep(0.5)
 
     screen.blit(wall, (-cameraOff_X, -cameraOff_Y))
     dialogue()
