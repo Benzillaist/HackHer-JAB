@@ -46,7 +46,7 @@ bound_Y = wall.get_height() - height
 # DIALOGUES
 
 pygame.font.init()
-font = pygame.font.Font('Raleway-Medium.ttf ',30)
+font = pygame.font.Font('Raleway-Black.ttf',30)
 
 print(f'{0.5*screen_X} {0.85*screen_Y}')
 
@@ -239,7 +239,7 @@ while 1:
         if numPressed < 3:
             numPressed += 1
             time.sleep(0.5)
-        elif numPressed >= 5 and numPressed < 9 and printerVar == 1:
+        elif numPressed >= 5 and numPressed <=8 and printerVar == 1:
             numPressed += 1
             time.sleep(0.5)
         elif numPressed == 9:
@@ -325,7 +325,7 @@ while 1:
             cameraOff_X = 0
             cameraOff_Y = 0
             looped = 1
-    
+
 
     if looped == 1 and numPressed == 20:
         if keys[pygame.K_c] or keys[pygame.K_r]:
