@@ -20,7 +20,11 @@ black = 0, 0, 0
 
 cameraOff_X = 0
 cameraOff_Y = 0
+<<<<<<< Updated upstream
 cameraBorder = 100
+=======
+cameraBorder = 50
+>>>>>>> Stashed changes
 
 count = 0
 
@@ -162,6 +166,7 @@ def dialogue():
         screen.blit(e3, rect3)
     elif numPressed == 7:
         screen.blit(e4, rect4)
+<<<<<<< Updated upstream
     elif numPressed == 8:
         screen.blit(e5, rect5)
     elif numPressed == 9:
@@ -192,15 +197,43 @@ def dialogue():
         screen.blit(g7, rectang7)
     elif numPressed == 20 and looped == 1:
         screen.blit(g8, rectang8)
+=======
+>>>>>>> Stashed changes
 
 # DIALOGUE D1S2
 
     #In proximity of printer
 
+<<<<<<< Updated upstream
 
 def printerText():
     screen.blit(e1, rect)
 
+=======
+e1 = font.render("Press P to print your documents", True, (0,0,0))
+rect = e1.get_rect()
+rect.center = (450,550)
+
+    #After a delay of 2 seconds - maybe loading bar?
+
+e2 = font.render("And you're done!", True, (0,0,0))
+rect2 = e2.get_rect()
+rect2.center = (450,550)
+
+    #Ernest walks up and starts talking
+
+e3 = font.render("Ernest: Hey there! Are you the newbie?", True, (0,0,0))
+rect3 = e3.get_rect()
+rect3.center = (450,550)
+
+e4 = font.render("Ernest: I'm the branch manager and your boss, Ernest", True, (0,0,0))
+rect4 = e4.get_rect()
+rect4.center = (450,550)
+
+def printerText():
+    screen.blit(e1, rect)
+
+>>>>>>> Stashed changes
 # GAME LOOP
 
 while 1:
@@ -211,7 +244,11 @@ while 1:
     #time.sleep(0.001)
     print(looped)
     keys = pygame.key.get_pressed()
+<<<<<<< Updated upstream
     if(numPressed < 5 or numPressed == 9 or numPressed == 10 or numPressed == 14 or numPressed == 15):
+=======
+    if(numPressed == 0 or numPressed == 3 or numPressed == 4 or numPressed == 8):
+>>>>>>> Stashed changes
         if keys[pygame.K_a]:
             if ballrect.left > cameraBorder:
                 ballrect.move_ip(-1, 0)
@@ -232,13 +269,17 @@ while 1:
                 ballrect.move_ip(0, 1)
             elif cameraOff_Y < bound_Y - cameraBorder:
                 cameraOff_Y += 1
+<<<<<<< Updated upstream
     
     print(f'numpressed: {numPressed}')
+=======
+>>>>>>> Stashed changes
 
     if keys[pygame.K_SPACE]:
         if numPressed < 3:
             numPressed += 1
             time.sleep(0.5)
+<<<<<<< Updated upstream
         elif numPressed >= 5 and numPressed <=8 and printerVar == 1:
             numPressed += 1
             time.sleep(0.5)
@@ -264,6 +305,23 @@ while 1:
         elif numPressed >= 17 and numPressed < 20 and sexualHarassment == 1:
             numPressed+=1
             time.sleep(0.5)
+=======
+        if numPressed >= 4 and numPressed < 8 and printerVar == 1:
+            numPressed+=1
+            time.sleep(0.5)
+
+    print(printerVar)
+    print(f'numpressed: {numPressed}')
+
+    if abs(ballrect.centerx + cameraOff_X - 1697) < 100 and abs(ballrect.centery + cameraOff_Y - 331) < 100:
+        printerText()
+        if numPressed == 3:
+            numPressed += 1
+        if keys[pygame.K_p]:
+            numPressed += 1
+            printerVar = 1
+            time.sleep(0.5)
+>>>>>>> Stashed changes
 
     if abs(ballrect.centerx + cameraOff_X - 1697) < 100 and abs(ballrect.centery + cameraOff_Y - 331) < 100:
         printerText()
@@ -339,6 +397,7 @@ while 1:
     if numPressed >= 16 and numPressed <= 20:
         screen.blit(pygame.transform.rotate(ernest, 90), (450 - cameraOff_X, 100 - cameraOff_Y))
     screen.blit(ball, ballrect)
+<<<<<<< Updated upstream
     dialogue()
     pygame.display.flip()
 
@@ -363,3 +422,6 @@ while 1:
             if jobless = 1:
                 # switch to a display that says game over 
     """
+=======
+    pygame.display.flip()
+>>>>>>> Stashed changes
